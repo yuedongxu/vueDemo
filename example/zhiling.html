@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>指令</title>
+	<script src="../lib/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-if="isLogin">hello:xxx</div>
+		<div v-else>请登录</div>
+		<div v-show="isLogin1">hello:yyy</div>
+
+		<ul>
+			<li v-for="item in sortItem" v-text="item"></li>
+		</ul>
+
+		<div>
+			<p v-text="message"></p>
+		</div>
+		<div>
+			<p v-html="addHtml"></p>
+		</div>
+
+		<div>
+			<input type="text" v-model="txt">
+		</div>
+	</div>
+	<script>
+		
+		var app = new Vue({
+			el:"#app",
+			data:{
+				isLogin:true,
+				isLogin1:true,
+				items:[20,23,18,65,32,19,54],
+				message:'text',
+				addHtml:'<span>html</span>',
+				txt:'z'
+			},
+			methods:{
+				sortArr:function(a,b){
+					return a - b;
+				}
+			},
+			computed:{
+			    sortItem:function(){
+			    	return this.items.sort(this.sortArr);
+			    }
+			 }
+		})
+
+		// v-if和v-show的区别是v-if会在满足条件时渲染，v-show是切换display属性
+
+		//当使用computed对data里面的属性操作时，dom上绑定的是computed里调用的属性
+		
+	</script>
+</body>
+</html>
