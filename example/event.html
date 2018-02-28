@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件</title>
+	<script src="../lib/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>合计：<span>{{count}}</span></p>
+		<button @click="add">+</button>
+		<button @click="sub">-</button>
+		
+		<div>
+			<input type="text" @keyup.enter="onEnter" v-model="secondCount">
+		</div>
+
+		<div>
+			<p v-bind:title="tit" v-text="tit" :style="{'color':'red'}"></p>
+		</div>
+	</div>
+	<script>
+		var app = new Vue({
+			el:"#app",
+			data:{
+				count:0,
+				secondCount:1,
+				tit:"标题"
+			},
+			methods:{
+				add:function(){
+					this.count ++;
+				},
+				sub:function(){
+					this.count--;
+				},
+				onEnter:function(){
+					this.count = this.count + parseInt(this.secondCount)
+				}
+			}
+		})
+	</script>
+</body>
+</html>
